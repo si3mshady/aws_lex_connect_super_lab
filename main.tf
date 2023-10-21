@@ -249,6 +249,6 @@ resource "aws_lex_slot_type" "menu" {
     value = "sushi"
   }
 
-  name                     = "FoodItemsDev"
+  name                     = "FoodItems"
   value_selection_strategy = "ORIGINAL_VALUE"
 }
