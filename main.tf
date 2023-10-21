@@ -141,6 +141,8 @@ resource "aws_lex_intent" "order_food" {
     # "I'm looking to get some food delivered."
   ]
 
+  
+
   confirmation_prompt {
     max_attempts = 2
 
@@ -148,6 +150,11 @@ resource "aws_lex_intent" "order_food" {
       content_type = "PlainText"
       content = "Absolutely, I'm thrilled to tell you about our delightful menu! Get ready for a mouthwatering experience with our incredible selection, including juicy burgers, heavenly pizzas, flavorful pastas, fresh and crisp salads, delectable sandwiches, and exquisite sushi."
       
+    }
+
+    message {
+      content_type = "PlainText"
+      content = "Great so you want to order {OrderItems}, correct."
     }
 
     
@@ -166,6 +173,7 @@ resource "aws_lex_intent" "order_food" {
 
   fulfillment_activity {
     type = "ReturnIntent"
+    
   }
   
 
