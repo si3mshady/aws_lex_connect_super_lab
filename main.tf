@@ -106,7 +106,7 @@ resource "aws_lex_intent" "myname" {
     # "Hello I'm known as {Name}",
     # "Hey there I'm {Name} nice to meet you",
     # "Greetings the names {Name}",
-    # "Hello call me {Name} if you need anything"
+   
 ]
 
    
