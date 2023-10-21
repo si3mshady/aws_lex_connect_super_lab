@@ -53,6 +53,7 @@ resource "aws_lex_intent" "myname" {
   description = "Intent used to capture user information"
   create_version = false
 
+
   sample_utterances = [
     "Hello and Salutations",
     "Hi",
@@ -97,15 +98,8 @@ resource "aws_lex_intent" "myname" {
     slot_type = "AMAZON.AlphaNumeric"
 
     sample_utterances = [
-    "Hello ",
-    "Hi there"
-    # "Greetings I go by {Name}",
-    # "Hey you can call me {Name}",
-    # "Good day I'm {Name}",
-    # "Hi this is {Name}",
-    # "Hello I'm known as {Name}",
-    # "Hey there I'm {Name} nice to meet you",
-    # "Greetings the names {Name}",
+    "Hello my name is {myName} ",
+    "Hi there my name is {myName}"
    
 ]
 
