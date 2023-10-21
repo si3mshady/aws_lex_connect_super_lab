@@ -72,6 +72,8 @@ resource "aws_lex_intent" "myname" {
     # "Hello this is Robo. What is your name"
 ]
 
+    
+
   confirmation_prompt {
     max_attempts = 2
 
@@ -81,6 +83,9 @@ resource "aws_lex_intent" "myname" {
       
     }
   }
+  
+
+  
 
   rejection_statement {
     message {
