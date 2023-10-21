@@ -153,17 +153,17 @@ resource "aws_lex_intent" "order_food" {
   confirmation_prompt {
     max_attempts = 2
 
-    message {
-      group_number = 1
-      content_type = "PlainText"
-      content = "Absolutely, I'm thrilled to tell you about our delightful menu! Get ready for a mouthwatering experience with our incredible selection, including juicy burgers, heavenly pizzas, flavorful pastas, fresh and crisp salads, delectable sandwiches, and exquisite sushi."
+    # message {
+    #   group_number = 1
+    #   content_type = "PlainText"
+    #   content = "Absolutely, I'm thrilled to tell you about our delightful menu! Get ready for a mouthwatering experience with our incredible selection, including juicy burgers, heavenly pizzas, flavorful pastas, fresh and crisp salads, delectable sandwiches, and exquisite sushi."
       
-    }
+    # }
 
     message {
       group_number = 2
       content_type = "PlainText"
-      content = "Great so you want to order food, correct."
+      content = "Great so you want to order food {OrderItem}, correct."
     }
 
     
