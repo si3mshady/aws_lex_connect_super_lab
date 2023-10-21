@@ -40,10 +40,10 @@ resource "aws_lex_bot" "devbot" {
   process_behavior = "BUILD"
   voice_id = "Salli"
 
-  intent {
-    intent_name = aws_lex_intent.myname.name
-    intent_version = "$LATEST"
-  }
+#   intent {
+#     intent_name = aws_lex_intent.myname.name
+#     intent_version = "$LATEST"
+#   }
 
  intent {
     intent_name = aws_lex_intent.order_food.name
@@ -52,78 +52,78 @@ resource "aws_lex_bot" "devbot" {
   
 }
 
-resource "aws_lex_intent" "myname" {
-  name = "myName"
-  description = "Intent used to capture user information"
-  create_version = false
+# resource "aws_lex_intent" "myname" {
+#   name = "myName"
+#   description = "Intent used to capture user information"
+#   create_version = false
 
 
-  sample_utterances = [
-    "Hello and Salutations",
-    "Hi",
-    "Greetings"
-    # "Hey there My name is Robo. What is your name",
-    # "Greetings. My name is Robo. What's your name",
-    # "Good day I am Robo. What is your name",
-    # "Welcome I'm Robo. What's your name",
-    # "Hello it's Robo here. What's your name",
-    # "Hey I'm Robo. What is your name",
-    # "Hi there. My name is Robo. What's your name",
-    # "Hello this is Robo. What is your name"
-]
+#   sample_utterances = [
+#     "Hello and Salutations",
+#     "Hi",
+#     "Greetings"
+#     # "Hey there My name is Robo. What is your name",
+#     # "Greetings. My name is Robo. What's your name",
+#     # "Good day I am Robo. What is your name",
+#     # "Welcome I'm Robo. What's your name",
+#     # "Hello it's Robo here. What's your name",
+#     # "Hey I'm Robo. What is your name",
+#     # "Hi there. My name is Robo. What's your name",
+#     # "Hello this is Robo. What is your name"
+# ]
 
     
 
-  confirmation_prompt {
-    max_attempts = 2
+#   confirmation_prompt {
+#     max_attempts = 2
 
-    message {
-      content_type = "PlainText"
-      content = "Nice to meet you {Name}"
+#     message {
+#       content_type = "PlainText"
+#       content = "Nice to meet you {Name}"
       
-    }
-  }
+#     }
+#   }
   
 
   
 
-  rejection_statement {
-    message {
-      content_type = "PlainText"
-      content = "I'm sorry, I cannot assist you at this time."
-    }
-  }
+#   rejection_statement {
+#     message {
+#       content_type = "PlainText"
+#       content = "I'm sorry, I cannot assist you at this time."
+#     }
+#   }
 
-  fulfillment_activity {
-    type = "ReturnIntent"
-  }
+#   fulfillment_activity {
+#     type = "ReturnIntent"
+#   }
 
-  slot {
-    name = "Name"
-    # slot_type_version = "$LATEST" No version when using bui
-    description = "What is your name"
-    priority = 1
-    slot_constraint = "Required"
-    slot_type = "AMAZON.AlphaNumeric"
+#   slot {
+#     name = "Name"
+#     # slot_type_version = "$LATEST" No version when using bui
+#     description = "What is your name"
+#     priority = 1
+#     slot_constraint = "Required"
+#     slot_type = "AMAZON.AlphaNumeric"
 
-    sample_utterances = [
-        "My name is {Name}"
+#     sample_utterances = [
+#         "My name is {Name}"
    
-]
+# ]
 
 
    
-    value_elicitation_prompt {
-      max_attempts = 2
+#     value_elicitation_prompt {
+#       max_attempts = 2
 
-      message {
-        content_type = "PlainText"
-        content = "Hey may I have your name"
-      }
-    }
+#       message {
+#         content_type = "PlainText"
+#         content = "Hey may I have your name"
+#       }
+#     }
     
-  }
-}
+#   }
+# }
 
 
 #######
@@ -161,7 +161,7 @@ resource "aws_lex_intent" "order_food" {
     message {
       group_number = 2
       content_type = "PlainText"
-      content = "Great so you want to order food, {FoodItems} correct."
+      content = "Great so you want to order food, correct."
     }
 
     
@@ -189,12 +189,12 @@ resource "aws_lex_intent" "order_food" {
     slot_type_version = "$LATEST"
     description = "The items to be ordered"
     priority = 1
-    slot_constraint = "Optional"
+    slot_constraint = "Required"
     slot_type = aws_lex_slot_type.menu.name
 
     sample_utterances = [
-        "I want to order a {FoodItems}",
-        "I could eat a {FoodItems}"
+        "I want to order a {OrderItems}",
+        "I could eat a {OrderItems}"
     
     
     ]
