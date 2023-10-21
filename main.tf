@@ -54,7 +54,7 @@ resource "aws_lex_intent" "greeting" {
   create_version = false
 
   sample_utterances = [
-    "Hi, what is your name",
+    "Hi what is your name",
     "Hello I'm Robo. What's your name",
     "Hey there My name is Robo. What is your name",
     "Greetings. My name is Robo. What's your name",
