@@ -98,9 +98,10 @@ resource "aws_lex_intent" "myname" {
     slot_type = "AMAZON.AlphaNumeric"
 
     sample_utterances = [
-        "How does this work"
+        "My name is {Name}"
    
 ]
+
 
    
     value_elicitation_prompt {
