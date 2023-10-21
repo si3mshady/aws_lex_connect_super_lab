@@ -134,7 +134,7 @@ resource "aws_lex_intent" "order_food" {
   create_version = false
 
   sample_utterances = [
-    "I want to order food.",
+  
     "Can I get some food from your restaurant.",
     "I'd like to place an order for delivery.",
     "What's on the menu today.",
@@ -152,14 +152,14 @@ resource "aws_lex_intent" "order_food" {
     max_attempts = 2
 
     message {
-    #   group_number = 1
+      group_number = 1
       content_type = "PlainText"
       content = "Absolutely, I'm thrilled to tell you about our delightful menu! Get ready for a mouthwatering experience with our incredible selection, including juicy burgers, heavenly pizzas, flavorful pastas, fresh and crisp salads, delectable sandwiches, and exquisite sushi."
       
     }
 
     message {
-      
+      group_number = 2
       content_type = "PlainText"
       content = "Great so you want to order {OrderItems}, correct."
     }
