@@ -171,7 +171,7 @@ resource "aws_lex_intent" "order_food" {
     value_elicitation_prompt {
       max_attempts = 2
 
-      response_card = jsondecode({
+      response_card = jsonencode({
             version = 1,
             content = [
             {
