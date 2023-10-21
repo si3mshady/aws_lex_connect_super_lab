@@ -161,7 +161,7 @@ resource "aws_lex_intent" "order_food" {
     message {
       group_number = 2
       content_type = "PlainText"
-      content = "Great so you want to order food, correct."
+      content = "Great so you want to order food, {FoodItems} correct."
     }
 
     
@@ -193,8 +193,8 @@ resource "aws_lex_intent" "order_food" {
     slot_type = aws_lex_slot_type.menu.name
 
     sample_utterances = [
-        "I want to order a {OrderItems}",
-        "I could eat a {OrderItems}"
+        "I want to order a {FoodItems}",
+        "I could eat a {FoodItems}"
     
     
     ]
