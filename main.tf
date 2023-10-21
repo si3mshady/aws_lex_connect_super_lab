@@ -134,16 +134,16 @@ resource "aws_lex_intent" "order_food" {
   create_version = false
 
   sample_utterances = [
-    "I want to order food."
-    # "Can I get some food from your restaurant.",
-    # "I'd like to place an order for delivery.",
-    # "What's on the menu today.",
-    # "How can I place an order for takeout.",
-    # "I'm hungry. What can I order.",
-    # "Do you have any specials for today.",
-    # "I need to order some food for pickup.",
-    # "Tell me about your food options.",
-    # "I'm looking to get some food delivered."
+    "I want to order food.",
+    "Can I get some food from your restaurant.",
+    "I'd like to place an order for delivery.",
+    "What's on the menu today.",
+    "How can I place an order for takeout.",
+    "I'm hungry. What can I order.",
+    "Do you have any specials for today.",
+    "I need to order some food for pickup.",
+    "Tell me about your food options.",
+    "I'm looking to get some food delivered."
   ]
 
   
@@ -151,12 +151,12 @@ resource "aws_lex_intent" "order_food" {
   confirmation_prompt {
     max_attempts = 2
 
-    # message {
-    # #   group_number = 1
-    #   content_type = "PlainText"
-    #   content = "Absolutely, I'm thrilled to tell you about our delightful menu! Get ready for a mouthwatering experience with our incredible selection, including juicy burgers, heavenly pizzas, flavorful pastas, fresh and crisp salads, delectable sandwiches, and exquisite sushi."
+    message {
+    #   group_number = 1
+      content_type = "PlainText"
+      content = "Absolutely, I'm thrilled to tell you about our delightful menu! Get ready for a mouthwatering experience with our incredible selection, including juicy burgers, heavenly pizzas, flavorful pastas, fresh and crisp salads, delectable sandwiches, and exquisite sushi."
       
-    # }
+    }
 
     message {
       
