@@ -184,20 +184,20 @@ resource "aws_lex_intent" "order_food" {
                 
                     "buttons": [
                     {
-                        "text": "Juicy Burger",
-                        "value": "Burger"
+                        "text": "Burger",
+                        "value": "burger"
                     },
                     {
-                        "text": "Hot Pizza",
-                        "value": "Pizza"
+                        "text": "Pizza",
+                        "value": "pizza"
                     }, 
                     {
-                        "text": "Delicious Pasta",
-                        "value": "Pasta"
+                        "text": "Pasta",
+                        "value": "pasta"
                     },
                     {
-                        "text": "Fresh Salad",
-                        "value": "Salad"
+                        "text": "Salad",
+                        "value": "salad"
                     }
                     ]
                 }
@@ -213,8 +213,6 @@ resource "aws_lex_intent" "order_food" {
     }
   }
 
-
-  
 
    }
 
