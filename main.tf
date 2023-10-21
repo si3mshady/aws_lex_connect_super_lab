@@ -54,8 +54,9 @@ resource "aws_lex_intent" "greeting" {
   create_version = false
 
   sample_utterances = [
-    "Hi what is your name",
-    # "Hello I'm Robo. What's your name",
+    "Hello and Salutations",
+    "Hi",
+    "Greetings"
     # "Hey there My name is Robo. What is your name",
     # "Greetings. My name is Robo. What's your name",
     # "Good day I am Robo. What is your name",
@@ -71,7 +72,7 @@ resource "aws_lex_intent" "greeting" {
 
     message {
       content_type = "PlainText"
-      content = "I'm thrillled to meet you {Name}, my name is Robo"
+      content = "Hello there whats your name"
       
     }
   }
