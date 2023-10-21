@@ -53,6 +53,7 @@ resource "aws_lex_bot" "devbot" {
 }
 
 
+
 # resource "aws_lex_intent" "myname" {
 #   name = "myName"
 #   description = "Intent used to capture user information"
