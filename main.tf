@@ -45,24 +45,32 @@ resource "aws_lex_bot" "devbot" {
     intent_version = "$LATEST"
   }
 
-#  intent {
-#     intent_name = aws_lex_intent.order_food.name
-#     intent_version = "$LATEST"
-#   }
+ intent {
+    intent_name = aws_lex_intent.order_food.name
+    intent_version = "$LATEST"
+  }
   
 }
-
 
 resource "aws_lex_intent" "myname" {
   name = "myName"
   description = "Intent used to capture user information"
   create_version = false
 
+
   sample_utterances = [
     "Hello and Salutations",
     "Hi",
     "Greetings"
-  ]
+    # "Hey there My name is Robo. What is your name",
+    # "Greetings. My name is Robo. What's your name",
+    # "Good day I am Robo. What is your name",
+    # "Welcome I'm Robo. What's your name",
+    # "Hello it's Robo here. What's your name",
+    # "Hey I'm Robo. What is your name",
+    # "Hi there. My name is Robo. What's your name",
+    # "Hello this is Robo. What is your name"
+]
 
   confirmation_prompt {
     max_attempts = 2
@@ -70,6 +78,7 @@ resource "aws_lex_intent" "myname" {
     message {
       content_type = "PlainText"
       content = "Nice to meet you {Name}"
+      
     }
   }
 
@@ -86,6 +95,7 @@ resource "aws_lex_intent" "myname" {
 
   slot {
     name = "Name"
+    # slot_type_version = "$LATEST" No version when using bui
     description = "What is your name"
     priority = 1
     slot_constraint = "Required"
@@ -93,8 +103,11 @@ resource "aws_lex_intent" "myname" {
 
     sample_utterances = [
         "My name is {Name}"
-    ]
+   
+]
 
+
+   
     value_elicitation_prompt {
       max_attempts = 2
 
@@ -103,148 +116,124 @@ resource "aws_lex_intent" "myname" {
         content = "Hey may I have your name"
       }
     }
+    
   }
-#   response_card = jsonencode({
-#     version = 1,
-#     contentType = "application/vnd.amazonaws.card.generic",
-#     genericAttachments = [
-#       {
-#         title = "MyName Bot",
-#         subTitle = "Please select your name",
-#         buttons = [
-#           {
-#             text = "John",
-#             value = "John"
-#           },
-#           {
-#             text = "Jane",
-#             value = "Jane"
-#           },
-#           {
-#             text = "Bob",
-#             value = "Bob"
-#           }
-#         ]
-#       }
-#     ]
-#   })
 }
 
 
 #######
 
-# resource "aws_lex_intent" "order_food" {
-#   name = "OrderFood"
-#   description = "Intent to order food from a restaurant"
-#   create_version = false
+resource "aws_lex_intent" "order_food" {
+  name = "OrderFood"
+  description = "Intent to order food from a restaurant"
+  create_version = false
 
-#   sample_utterances = [
-#     "I want to order food.",
-#     "Can I get some food from your restaurant.",
-#     "I'd like to place an order for delivery.",
-#     "What's on the menu today.",
-#     "How can I place an order for takeout.",
-#     "I'm hungry. What can I order.",
-#     "Do you have any specials for today.",
-#     "I need to order some food for pickup.",
-#     "Tell me about your food options.",
-#     "I'm looking to get some food delivered."
-#   ]
+  sample_utterances = [
+    "I want to order food."
+    # "Can I get some food from your restaurant.",
+    # "I'd like to place an order for delivery.",
+    # "What's on the menu today.",
+    # "How can I place an order for takeout.",
+    # "I'm hungry. What can I order.",
+    # "Do you have any specials for today.",
+    # "I need to order some food for pickup.",
+    # "Tell me about your food options.",
+    # "I'm looking to get some food delivered."
+  ]
 
-#   confirmation_prompt {
-#     max_attempts = 2
+  confirmation_prompt {
+    max_attempts = 2
 
-#     message {
-#       content_type = "PlainText"
-#       content = "Absolutely, I'm thrilled to tell you about our delightful menu! Get ready for a mouthwatering experience with our incredible selection, including juicy burgers, heavenly pizzas, flavorful pastas, fresh and crisp salads, delectable sandwiches, and exquisite sushi."
+    message {
+      content_type = "PlainText"
+      content = "Absolutely, I'm thrilled to tell you about our delightful menu! Get ready for a mouthwatering experience with our incredible selection, including juicy burgers, heavenly pizzas, flavorful pastas, fresh and crisp salads, delectable sandwiches, and exquisite sushi."
       
-#     }
+    }
 
     
    
 
-#   }
+  }
   
   
 
-#   rejection_statement {
-#     message {
-#       content_type = "PlainText"
-#       content = "I'm sorry, I cannot assist you at this time."
-#     }
-#   }
+  rejection_statement {
+    message {
+      content_type = "PlainText"
+      content = "I'm sorry, I cannot assist you at this time."
+    }
+  }
 
-#   fulfillment_activity {
-#     type = "ReturnIntent"
-#   }
+  fulfillment_activity {
+    type = "ReturnIntent"
+  }
   
 
-#   slot {
-#     name = "OrderItems"
-#     slot_type_version = "$LATEST"
-#     description = "The items to be ordered"
-#     priority = 1
-#     slot_constraint = "Optional"
-#     slot_type = aws_lex_slot_type.menu.name
+  slot {
+    name = "OrderItems"
+    slot_type_version = "$LATEST"
+    description = "The items to be ordered"
+    priority = 1
+    slot_constraint = "Optional"
+    slot_type = aws_lex_slot_type.menu.name
 
-#     # sample_utterances = ["I want to order a {OrderItems}"]
+    sample_utterances = ["I want to order a {OrderItems}"]
 
     
 
 
-#     value_elicitation_prompt {
-#       max_attempts = 2
+    value_elicitation_prompt {
+      max_attempts = 2
 
      
-#       message {
-#         content_type = "PlainText"
-#         content = "Great so you want to order {OrderItems}, correct."
+      message {
+        content_type = "PlainText"
+        content = "Great so you want to order {OrderItems}, correct."
         
-#       }
-#     }
+      }
+    }
 
    
-#   }
+  }
 
   
 
 
-#    }
+   }
 
 
 
 
 
-# resource "aws_lex_slot_type" "menu" {
-#   description = "Enumeration representing possible food items on the menu"
-#   create_version = false
+resource "aws_lex_slot_type" "menu" {
+  description = "Enumeration representing possible food items on the menu"
+  create_version = false
 
-#   enumeration_value {
-#     value = "burger"
-#   }
+  enumeration_value {
+    value = "burger"
+  }
 
-#   enumeration_value {
-#     value = "pizza"
-#   }
+  enumeration_value {
+    value = "pizza"
+  }
 
-#   enumeration_value {
-#     value = "pasta"
-#   }
+  enumeration_value {
+    value = "pasta"
+  }
 
-#   enumeration_value {
-#     value = "salad"
-#   }
+  enumeration_value {
+    value = "salad"
+  }
 
-#   enumeration_value {
-#     value = "sandwich"
-#   }
+  enumeration_value {
+    value = "sandwich"
+  }
 
-#   enumeration_value {
-#     value = "sushi"
-#   }
+  enumeration_value {
+    value = "sushi"
+  }
 
-#   name                     = "FoodItems"
-#   value_selection_strategy = "ORIGINAL_VALUE"
-# }
-
+  name                     = "FoodItems"
+  value_selection_strategy = "ORIGINAL_VALUE"
+}
 
