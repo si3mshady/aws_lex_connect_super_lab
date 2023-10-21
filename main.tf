@@ -55,15 +55,15 @@ resource "aws_lex_intent" "greeting" {
 
   sample_utterances = [
     "Hi what is your name",
-    "Hello I'm Robo. What's your name",
-    "Hey there My name is Robo. What is your name",
-    "Greetings. My name is Robo. What's your name",
-    "Good day I am Robo. What is your name",
-    "Welcome I'm Robo. What's your name",
-    "Hello it's Robo here. What's your name",
-    "Hey I'm Robo. What is your name",
-    "Hi there. My name is Robo. What's your name",
-    "Hello this is Robo. What is your name"
+    # "Hello I'm Robo. What's your name",
+    # "Hey there My name is Robo. What is your name",
+    # "Greetings. My name is Robo. What's your name",
+    # "Good day I am Robo. What is your name",
+    # "Welcome I'm Robo. What's your name",
+    # "Hello it's Robo here. What's your name",
+    # "Hey I'm Robo. What is your name",
+    # "Hi there. My name is Robo. What's your name",
+    # "Hello this is Robo. What is your name"
 ]
 
   confirmation_prompt {
