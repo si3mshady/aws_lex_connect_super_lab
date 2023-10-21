@@ -89,7 +89,7 @@ resource "aws_lex_intent" "greeting" {
 
   slot {
     name = "Name"
-    slot_type_version = "$LATEST"
+    # slot_type_version = "$LATEST"
     description = "CustomerName"
     priority = 1
     slot_constraint = "Required"
