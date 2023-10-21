@@ -41,15 +41,15 @@ resource "aws_lex_bot" "devbot" {
   voice_id = "Salli"
 
   intent {
-    intent_name = aws_lex_intent.greeting.name
+    intent_name = aws_lex_intent.myname.name
     intent_version = "$LATEST"
   }
 
   
 }
 
-resource "aws_lex_intent" "greeting" {
-  name = "Greeting"
+resource "aws_lex_intent" "myname" {
+  name = "myName"
   description = "Intent used to capture user information"
   create_version = false
 
@@ -72,7 +72,7 @@ resource "aws_lex_intent" "greeting" {
 
     message {
       content_type = "PlainText"
-      content = "Nice to meet you {Name}"
+      content = "Nice to meet you {myName}"
       
     }
   }
