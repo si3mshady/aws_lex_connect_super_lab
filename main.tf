@@ -193,40 +193,7 @@ resource "aws_lex_intent" "order_food" {
       }
     }
 
-    response_card =  jsonencode({
-            version = 1,
-            content = [
-            {
-                "contentType": "application/vnd.amazonaws.card.generic",
-                "genericAttachments": [
-                {
-                    "title": "Food Items",
-                    "subTitle": "On the menu",
-                    # "imageUrl": "https://images.getbento.com/accounts/3bf33a8c2df2466870e9b332ae826067/media/images/smdp2l2o.jpeg?w=1000&fit=max&auto=compress,format&h=1000",
-                
-                    "buttons": [
-                    {
-                        "text": "Burger",
-                        "value": "burger"
-                    },
-                    {
-                        "text": "Pizza",
-                        "value": "pizza"
-                    }, 
-                    {
-                        "text": "Pasta",
-                        "value": "pasta"
-                    },
-                    {
-                        "text": "Salad",
-                        "value": "salad"
-                    }
-                    ]
-                }
-                ]
-            }
-            ]
-        })
+   
   }
 
   
@@ -235,7 +202,6 @@ resource "aws_lex_intent" "order_food" {
    }
 
 
-  
 
 
 
