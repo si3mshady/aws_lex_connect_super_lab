@@ -72,7 +72,7 @@ resource "aws_lex_intent" "greeting" {
 
     message {
       content_type = "PlainText"
-      content = "Hello there whats your name"
+      content = "Nice to meet you {Name}"
       
     }
   }
@@ -91,32 +91,33 @@ resource "aws_lex_intent" "greeting" {
   slot {
     name = "Name"
     # slot_type_version = "$LATEST" No version when using bui
-    description = "CustomerName"
+    description = "What is your name"
     priority = 1
     slot_constraint = "Required"
     slot_type = "AMAZON.AlphaNumeric"
 
     sample_utterances = [
-    "Hello my name is {Name}",
-    "Hi there I'm {Name}",
-    "Greetings I go by {Name}",
-    "Hey you can call me {Name}",
-    "Good day I'm {Name}",
-    "Hi this is {Name}",
-    "Hello I'm known as {Name}",
-    "Hey there I'm {Name} nice to meet you",
-    "Greetings the names {Name}",
-    "Hello call me {Name} if you need anything"
+    "Hello ",
+    "Hi there"
+    # "Greetings I go by {Name}",
+    # "Hey you can call me {Name}",
+    # "Good day I'm {Name}",
+    # "Hi this is {Name}",
+    # "Hello I'm known as {Name}",
+    # "Hey there I'm {Name} nice to meet you",
+    # "Greetings the names {Name}",
+    # "Hello call me {Name} if you need anything"
 ]
 
-
+   
     value_elicitation_prompt {
       max_attempts = 2
 
       message {
         content_type = "PlainText"
-        content = "Great to meet you {Name}, did I pronounce that correctly."
+        content = "Hey may I have your name"
       }
     }
+    
   }
 }
