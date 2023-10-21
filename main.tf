@@ -237,3 +237,4 @@ resource "aws_lex_slot_type" "menu" {
   value_selection_strategy = "ORIGINAL_VALUE"
 }
 
+
