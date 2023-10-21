@@ -193,7 +193,7 @@ resource "aws_lex_intent" "order_food" {
       }
     }
 
-    response_card =  response_card = jsonencode({
+    response_card =  jsonencode({
             version = 1,
             content = [
             {
