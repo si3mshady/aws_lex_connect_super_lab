@@ -1,44 +1,38 @@
-# provider "aws" {
-#   region = "us-east-1"  # Change the region to your desired region
-# }
+ response_card = jsonencode({
+    version = 1,
+    content = [
+      {
+        "contentType": "application/vnd.amazonaws.card.generic",
+        "genericAttachments": [
+          {
+            "title": "Food Items",
+            "subTitle": "On the menu",
+            "imageUrl": "vhttps://images.getbento.com/accounts/3bf33a8c2df2466870e9b332ae826067/media/images/smdp2l2o.jpeg?w=1000&fit=max&auto=compress,format&h=1000",
+          
+            "buttons": [
+              {
+                "text": "Juicy Burger",
+                "value": "Burger"
+              },
+               {
+                "text": "Hot Pizza",
+                "value": "Pizza"
+              }, {
+                "text": "Delicious Pasta",
+                "value": "Pasta"
+              }, {
+                "text": "Fresh Salad",
+                "value": "Salad"
+              }, {
+                "text": "More Info",
+                "value": "burger"
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  })
+}
 
-# resource "aws_lex_bot" "greeting_bot" {
-#   name               = "GreetingBot"
-#   description        = "A simple greeting bot"
-#   create_version     = true
-#   enable_model_improvements = true
-# }
-
-# resource "aws_lex_bot_version" "greeting_bot_version" {
-#   name             = aws_lex_bot.greeting_bot.name
-#   bot_name         = aws_lex_bot.greeting_bot.name
-#   checksum         = filebase64sha256("bot.json")  # Create this JSON file
-#   process_behavior = "BUILD"
-# }
-
-# resource "aws_lex_intent" "greeting_intent" {
-#   name                 = "GreetingIntent"
-#   description          = "Intent for greeting users"
-#   create_version       = true
-#   bot_name             = aws_lex_bot.greeting_bot.name
-#   sample_utterances    = ["Hello", "Hi", "Greetings"]
-# }
-
-# resource "aws_lex_intent_version" "greeting_intent_version" {
-#   name         = aws_lex_intent.greeting_intent.name
-#   bot_name     = aws_lex_bot.greeting_bot.name
-#   intent_name  = aws_lex_intent.greeting_intent.name
-#   checksum     = filebase64sha256("intent.json")  # Create this JSON file
-#   process_behavior = "BUILD"
-# }
-
-# resource "aws_lex_bot_alias" "greeting_alias" {
-#   name         = "Prod"
-#   description  = "Production alias for the greeting bot"
-#   bot_name     = aws_lex_bot.greeting_bot.name
-#   bot_version  = aws_lex_bot_version.greeting_bot_version.name
-# }
-
-# output "bot_alias" {
-#   value = aws_lex_bot_alias.greeting_alias.name
-# }
+}
