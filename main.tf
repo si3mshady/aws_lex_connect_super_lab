@@ -55,7 +55,7 @@ resource "aws_lex_intent" "greeting" {
 
   sample_utterances = [
     "Hi, what is your name",
-    "Hello, I'm Robo. What's your name",
+    "Hello I'm Robo. What's your name",
     "Hey there My name is Robo. What is your name",
     "Greetings. My name is Robo. What's your name",
     "Good day I am Robo. What is your name",
@@ -89,23 +89,23 @@ resource "aws_lex_intent" "greeting" {
 
   slot {
     name = "Name"
-    # slot_type_version = "$LATEST"
+    # slot_type_version = "$LATEST" No version when using bui
     description = "CustomerName"
     priority = 1
     slot_constraint = "Required"
-    slot_type = "AMAZON.AlphaNumeric"
+    slot_type = "AMAZON.FirstName"
 
     sample_utterances = [
-    "Hello, my name is {Name}",
-    "Hi there, I'm {Name}",
-    "Greetings, I go by {Name}",
-    "Hey, you can call me {Name}",
-    "Good day, I'm {Name}",
-    "Hi, this is {Name}",
-    "Hello, I'm known as {Name}",
-    "Hey there, I'm {Name}, nice to meet you",
-    "Greetings, the name's {Name}",
-    "Hello, call me {Name} if you need anything"
+    "Hello my name is {Name}",
+    "Hi there I'm {Name}",
+    "Greetings I go by {Name}",
+    "Hey you can call me {Name}",
+    "Good day I'm {Name}",
+    "Hi this is {Name}",
+    "Hello I'm known as {Name}",
+    "Hey there I'm {Name} nice to meet you",
+    "Greetings the name is {Name}",
+    "Hello call me {Name} if you need anything"
 ]
 
 
