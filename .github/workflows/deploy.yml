@@ -1,0 +1,43 @@
+name: Terraform Deployment
+
+on:
+  push:
+    branches:
+      - dev
+
+env:
+  AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
+  AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Install Terraform
+        run: |
+          wget https://releases.hashicorp.com/terraform/1.0.9/terraform_1.0.9_linux_amd64.zip
+          unzip terraform_1.0.9_linux_amd64.zip
+          sudo mv terraform /usr/local/bin/
+
+      - name: Initialize Terraform
+        run: terraform init
+
+      - name: Check for your Terraform manifest (e.g., main.tf)
+        run: |
+          if [ -f main.tf ]; then
+            echo "Terraform manifest found: main.tf"
+          else
+            echo "Error: Terraform manifest (main.tf) not found."
+            exit 1
+          fi
+
+      - name: Validate Terraform configuration
+        run: terraform validate
+
+      - name: Plan Terraform configuration
+        run: terraform plan -out=tfplan
+
+      - name: Deploy Terraform manifest
+        run: terraform apply --auto-approve
