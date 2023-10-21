@@ -45,6 +45,10 @@ resource "aws_lex_bot" "devbot" {
     intent_version = "$LATEST"
   }
 
+ intent {
+    intent_name = aws_lex_intent.order_food.name
+    intent_version = "$LATEST"
+  }
   
 }
 
