@@ -228,7 +228,7 @@ resource "aws_lex_intent" "order_food" {
 
 resource "aws_lex_slot_type" "menu" {
   description = "Enumeration representing possible food items on the menu"
-  create_version = false
+  create_version = true
 
   enumeration_value {
     value = "burger"
