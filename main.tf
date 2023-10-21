@@ -93,7 +93,7 @@ resource "aws_lex_intent" "greeting" {
     description = "CustomerName"
     priority = 1
     slot_constraint = "Required"
-    slot_type = "AMAZON.FirstName"
+    slot_type = "AMAZON.AlphaNumeric"
 
     sample_utterances = [
     "Hello my name is {Name}",
@@ -104,7 +104,7 @@ resource "aws_lex_intent" "greeting" {
     "Hi this is {Name}",
     "Hello I'm known as {Name}",
     "Hey there I'm {Name} nice to meet you",
-    "Greetings the name is {Name}",
+    "Greetings the names {Name}",
     "Hello call me {Name} if you need anything"
 ]
 
