@@ -138,14 +138,14 @@ resource "aws_lex_intent" "order_food" {
   sample_utterances = [
   
     "Can I get some food from your restaurant.",
-    "I'd like to place an order for delivery.",
-    "What's on the menu today.",
-    "How can I place an order for takeout.",
-    "I'm hungry. What can I order.",
-    "Do you have any specials for today.",
-    "I need to order some food for pickup.",
-    "Tell me about your food options.",
-    "I'm looking to get some food delivered."
+    # "I'd like to place an order for delivery.",
+    # "What's on the menu today.",
+    # "How can I place an order for takeout.",
+    # "I'm hungry. What can I order.",
+    # "Do you have any specials for today.",
+    # "I need to order some food for pickup.",
+    # "Tell me about your food options.",
+    # "I'm looking to get some food delivered."
   ]
 
   
@@ -161,7 +161,7 @@ resource "aws_lex_intent" "order_food" {
     # }
 
     message {
-      group_number = 2
+    
       content_type = "PlainText"
       content = "Great so you want to order food {OrderItem}, correct."
     }
@@ -195,8 +195,7 @@ resource "aws_lex_intent" "order_food" {
     slot_type = aws_lex_slot_type.menu.name
 
     sample_utterances = [
-        "I want to order a {OrderItems}",
-        "I could eat a {OrderItems}"
+        "I want to order a {OrderItems}"
     
     
     ]
