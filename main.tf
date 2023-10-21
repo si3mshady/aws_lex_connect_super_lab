@@ -73,7 +73,7 @@ resource "aws_lex_intent" "myname" {
 
     message {
       content_type = "PlainText"
-      content = "Nice to meet you {myName}"
+      content = "Nice to meet you {Name}"
       
     }
   }
