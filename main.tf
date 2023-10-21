@@ -194,7 +194,7 @@ resource "aws_lex_intent" "order_food" {
 
     sample_utterances = [
         "I want to order a {OrderItems}",
-        "I could eat"
+        "I could eat a {OrderItems}"
     
     
     ]
