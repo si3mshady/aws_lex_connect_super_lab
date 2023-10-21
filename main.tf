@@ -154,6 +154,8 @@ resource "aws_lex_intent" "order_food" {
    
 
   }
+  
+  
 
   rejection_statement {
     message {
@@ -165,6 +167,7 @@ resource "aws_lex_intent" "order_food" {
   fulfillment_activity {
     type = "ReturnIntent"
   }
+  
 
   slot {
     name = "OrderItems"
@@ -176,7 +179,21 @@ resource "aws_lex_intent" "order_food" {
 
     # sample_utterances = ["I want to order a {OrderItems}"]
 
-     response_card = jsonencode({
+    
+
+
+    value_elicitation_prompt {
+      max_attempts = 2
+
+     
+      message {
+        content_type = "PlainText"
+        content = "Great so you want to order {OrderItems}, correct."
+        
+      }
+    }
+
+    response_card =  response_card = jsonencode({
             version = 1,
             content = [
             {
@@ -210,17 +227,6 @@ resource "aws_lex_intent" "order_food" {
             }
             ]
         })
-
-
-    value_elicitation_prompt {
-      max_attempts = 2
-
-     
-      message {
-        content_type = "PlainText"
-        content = "Great so you want to order {OrderItems}, correct."
-      }
-    }
   }
 
   
