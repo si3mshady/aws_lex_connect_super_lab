@@ -325,6 +325,10 @@ resource "aws_lambda_function" "test_lambda" {
   
 }
 
+
+
+
+
 resource "aws_lambda_permission" "food_items_lambda_permission" {
   statement_id  = "AllowExecutionFromLex"
   action        = "lambda:InvokeFunction"
