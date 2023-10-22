@@ -1,0 +1,63 @@
+AWSTemplateFormatVersion: '2010-09-09'
+Resources:
+  LexBot:
+    Type: 'AWS::Lex::Bot'
+    Properties:
+      Name: MyLexBot
+      Description: My Amazon Lex V2 bot
+      RoleArn: !GetAtt LexBotRole.Arn
+      IdleSessionTTLInSeconds: 300
+      BotTags:
+        - Key: Environment
+          Value: Production
+      DataPrivacy:
+        ChildDirected: false
+      BotLocales:
+        - LocaleId: en_US
+          NluIntentConfidenceThreshold: 0.4
+          VoiceSettings:
+            VoiceId: Joanna
+            VoiceName: Joanna
+      AutoBuildBotLocales: true
+      BotFileS3Location:
+        Bucket: my-bucket
+        Key: my-lex-bot.zip
+  LexBotRole:
+    Type: 'AWS::IAM::Role'
+    Properties:
+      RoleName: LexBotRole
+      AssumeRolePolicyDocument:
+        Version: '2012-10-17'
+        Statement:
+          - Effect: Allow
+            Principal:
+              Service: lexv2.amazonaws.com
+            Action: 'sts:AssumeRole'
+      Policies:
+        - PolicyName: LexBotPolicy
+          PolicyDocument:
+            Version: '2012-10-17'
+            Statement:
+              - Effect: Allow
+                Action:
+                  - 'lexv2:CreateBot'
+                  - 'lexv2:DeleteBot'
+                  - 'lexv2:DescribeBot'
+                  - 'lexv2:UpdateBot'
+                  - 'lexv2:CreateBotAlias'
+                  - 'lexv2:DeleteBotAlias'
+                  - 'lexv2:DescribeBotAlias'
+                  - 'lexv2:UpdateBotAlias'
+                  - 'lexv2:CreateBotLocale'
+                  - 'lexv2:DeleteBotLocale'
+                  - 'lexv2:DescribeBotLocale'
+                  - 'lexv2:UpdateBotLocale'
+                  - 'lexv2:CreateIntent'
+                  - 'lexv2:DeleteIntent'
+                  - 'lexv2:DescribeIntent'
+                  - 'lexv2:UpdateIntent'
+                  - 'lexv2:CreateSlot'
+                  - 'lexv2:DeleteSlot'
+                  - 'lexv2:DescribeSlot'
+                  - 'lexv2:UpdateSlot'
+                Resource: '*'

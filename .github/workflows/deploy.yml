@@ -5,16 +5,20 @@ on:
     branches:
       - dev
 
-
 env:
   AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
   AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+
 jobs:
   deploy:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout code
         uses: actions/checkout@v2
+
+      - name: Install AWS CLI
+        uses: unfor19/install-aws-cli-action@v1
+
       - name: Install Terraform
         run: |
           wget https://releases.hashicorp.com/terraform/1.0.9/terraform_1.0.9_linux_amd64.zip
@@ -24,12 +28,12 @@ jobs:
       - name: Initialize Terraform
         run: terraform init
 
-      - name: Check for your Terraform manifest (e.g., main.tf)
+      - name: Check for your Terraform manifest (e.g., v2_lex.tf)
         run: |
-          if [ -f main.tf ]; then
-            echo "Terraform manifest found: main.tf"
+          if [ -f v2_lex.tf ]; then
+            echo "Terraform manifest found: v2_lex.tf"
           else
-            echo "Error: Terraform manifest (main.tf) not found."
+            echo "Error: Terraform manifest (v2_lex.tf) not found."
             exit 1
           fi
 
