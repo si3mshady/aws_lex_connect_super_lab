@@ -44,7 +44,7 @@ resource "aws_cloudformation_stack" "lex_bot_cfn" {
   capabilities = ["CAPABILITY_NAMED_IAM"]
   parameters = {
     BucketName = var.bucket_name
-    BotName = var.bot_name
+    # BotName = var.bot_name
     # RoleArn
   }
   tags = {
