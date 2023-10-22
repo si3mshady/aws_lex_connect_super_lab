@@ -5,7 +5,7 @@ Parameters:
   
 AWSTemplateFormatVersion: '2010-09-09'
 Resources:
-  LexBot:
+  LexBotV2:
     Type: 'AWS::Lex::Bot'
     Properties:
       Name: MyLexBot
