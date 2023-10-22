@@ -136,13 +136,7 @@ resource "aws_lex_intent" "order_food" {
   create_version = false
 
    sample_utterances = [
-    "Hello",
-    "Hi",
-    "How are you",
-    "What's up",
-    "Good morning",
-    "Good afternoon",
-    "Good evening"
+    "what is on the menu"
   ]
 
   depends_on = [ aws_lambda_function.test_lambda ]
