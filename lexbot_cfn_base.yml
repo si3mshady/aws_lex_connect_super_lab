@@ -15,22 +15,17 @@ Resources:
   
       DataPrivacy:
         ChildDirected: false
-        
+
   OrderFoodIntent:
-  Type: 'AWS::Lex::Intent'
-  Properties:
-    Name: OrderFood
-    Description: Intent for ordering food
-    SampleUtterances:
-      - I want to order a pizza
-      - Can I order a burger?
-      # BotLocales:
-      #   - LocaleId: en_US
-      #     NluConfidenceThreshold: 0.4
-      #     VoiceSettings:
-      #       VoiceId: Joanna
-           
-      AutoBuildBotLocales: true
+    Type: 'AWS::Lex::Intent'
+    Properties:
+      Name: OrderFood
+      Description: Intent for ordering food
+      SampleUtterances:
+        - I want to order a pizza
+        - Can I order a burger?
+      
+      # AutoBuildBotLocales: true
   LexBotRole:
     Type: 'AWS::IAM::Role'
     Properties:
