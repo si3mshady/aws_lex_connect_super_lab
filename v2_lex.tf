@@ -52,11 +52,11 @@ resource "aws_cloudformation_stack" "lex_bot_cfn" {
 }
 
 
-resource "null_resource" "create-bot-locale" {
-  provisioner "local-exec" {
-    command = "aws lexv2-models create-bot-locale --bot-id ${var.bot_id} --bot-version ${var.bot_version} --locale-id ${var.bot_locale} --nlu-intent-confidence-threshold 0.4"
-  }
-}
+# resource "null_resource" "create-bot-locale" {
+#   provisioner "local-exec" {
+#     command = "aws lexv2-models create-bot-locale --bot-id ${var.bot_id} --bot-version ${var.bot_version} --locale-id ${var.bot_locale} --nlu-intent-confidence-threshold 0.4"
+#   }
+# }
 
 
 # aws lexv2-models create-bot-locale --bot-id VD4IZSUGEQ --bot-version DRAFT --locale-id en_US --nlu-intent-confidence-threshold 0.4
