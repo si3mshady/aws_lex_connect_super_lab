@@ -46,6 +46,6 @@ jobs:
       # - name: Deploy Terraform manifest
       #   run: terraform deploy --auto-approve
 
-      - name: Delete Terraform manifest
-      run: terraform destroy --auto-approve
+      - name: Deploy Terraform manifest
+        run: terraform destroy --auto-approve
 
