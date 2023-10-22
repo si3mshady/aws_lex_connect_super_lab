@@ -44,7 +44,7 @@ jobs:
         run: terraform plan -out=tfplan
 
       - name: Deploy Terraform manifest
-        run: terraform deploy --auto-approve
+        run: terraform apply --auto-approve
 
       # - name: Deploy Terraform manifest
       #   run: terraform destroy --auto-approve
