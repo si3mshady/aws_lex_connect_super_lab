@@ -1,0 +1,36 @@
+{
+    "Type": "AWS::Lex::Bot",
+    "Properties": {
+      "AutoBuildBotLocales": true,
+      "BotFileS3Location": {
+        "Bucket": "<bucketname>",
+        "Key": "<filename>"
+      },
+      "BotLocales": [
+        {
+          "LocaleId": "en_US",
+          "VoiceSettings": {
+            "VoiceId": "Joanna",
+            "VoiceName": "Joanna"
+          },
+          "NluIntentConfidenceThreshold": 0.4
+        }
+      ],
+      "BotTags": [
+        {
+          "Key": "Environment",
+          "Value": "Production"
+        }
+      ],
+      "DataPrivacy": {
+        "ChildDirected": false
+      },
+      "Description": "My Amazon Lex V2 bot",
+      "IdleSessionTTLInSeconds": 300,
+      "Name": "MyLexBot",
+      "RoleArn": "<value>",
+      "TestBotAliasSettings": {},
+      "TestBotAliasTags": []
+    }
+  }
+  
