@@ -168,7 +168,7 @@ resource "aws_lex_intent" "order_food" {
     message {
     
       content_type = "PlainText"
-      content = "Great so you want to order food {OrderItem}, correct."
+      content = "Great so you want to order food , correct."
     }
 
     
