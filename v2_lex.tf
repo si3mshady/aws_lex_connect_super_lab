@@ -18,7 +18,6 @@ variable "bot_bucket_name" {
 
 
 
-
 variable "bucket_name" {
   type = string
   default = "terraform-state-mgmt-elliott"
