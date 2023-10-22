@@ -15,13 +15,13 @@ Resources:
   
       DataPrivacy:
         ChildDirected: false
-      BotLocales:
-        - LocaleId: en_US
-          NluConfidenceThreshold: 0.4
-          VoiceSettings:
-            VoiceId: Joanna
+      # BotLocales:
+      #   - LocaleId: en_US
+      #     NluConfidenceThreshold: 0.4
+      #     VoiceSettings:
+      #       VoiceId: Joanna
            
-      AutoBuildBotLocales: false
+      AutoBuildBotLocales: true
   LexBotRole:
     Type: 'AWS::IAM::Role'
     Properties:
@@ -61,3 +61,7 @@ Resources:
                   - 'lexv2:DescribeSlot'
                   - 'lexv2:UpdateSlot'
                 Resource: '*'
+
+
+
+#start by deploying only required attributes
