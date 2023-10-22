@@ -15,11 +15,11 @@ Resources:
   
       DataPrivacy:
         ChildDirected: false
-      # BotLocales:
-      #   - LocaleId: en_US
-      #     NluConfidenceThreshold: 0.4
-      #     VoiceSettings:
-      #       VoiceId: Joanna
+      BotLocales:
+        - LocaleId: en_US
+          NluConfidenceThreshold: 0.4
+          VoiceSettings:
+            VoiceId: Joanna
            
       AutoBuildBotLocales: false
   LexBotRole:
