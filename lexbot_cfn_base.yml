@@ -22,7 +22,7 @@ Resources:
           NluConfidenceThreshold: 0.4
           VoiceSettings:
             VoiceId: Joanna
-            # VoiceName: Joanna
+           
       AutoBuildBotLocales: false
   LexBotRole:
     Type: 'AWS::IAM::Role'
