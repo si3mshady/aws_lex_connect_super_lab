@@ -69,11 +69,11 @@ resource "aws_iam_role_policy_attachment" "lex_bot_policy_attachment" {
 }
 
 
-# resource "null_resource" "create-endpoint" {
-#   provisioner "local-exec" {
-#     command = " aws lexv2-models create-bot --bot-name <botname> --role-arn <value> --data-privacy <value> --cli-input-json file://<file.json>"
-#   }
-# }
+resource "null_resource" "create-endpoint" {
+  provisioner "local-exec" {
+    command = "aws lexv2-models create-bot --bot-name elliottLexBot --role-arn arn:aws:iam::335055665325:role/LexBotRoleV2 --data-privacy true --cli-input-json file://bot.json>"
+  }
+}
 
 output "LexBotRoleArn" {
   value = aws_iam_role.lex_bot_role.arn
