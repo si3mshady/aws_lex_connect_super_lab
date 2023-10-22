@@ -144,11 +144,13 @@ resource "aws_lex_intent" "order_food" {
     "Good afternoon",
     "Good evening"
   ]
+
+  depends_on = [ aws_lambda_function.test_lambda ]
   
   fulfillment_activity {
     type = "CodeHook"
     code_hook {
-      uri = aws_lambda_function.test_lambda.invoke_arn
+      uri = aws_lambda_function.test_lambda.arn
       message_version = "1.0"
     }
   }
