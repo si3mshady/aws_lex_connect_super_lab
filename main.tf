@@ -188,36 +188,36 @@ resource "aws_lex_intent" "order_food" {
   
   
 
-  slot {
-    name = "OrderItems"
-    slot_type_version = "$LATEST"
-    description = "The items to be ordered"
-    priority = 1
-    slot_constraint = "Optional"
-    slot_type = aws_lex_slot_type.menu.name
+#   slot {
+#     name = "OrderItems"
+#     slot_type_version = "$LATEST"
+#     description = "The items to be ordered"
+#     priority = 1
+#     slot_constraint = "Optional"
+#     slot_type = aws_lex_slot_type.menu.name
 
-    sample_utterances = [
-        "I want to order a {OrderItems}"
+#     sample_utterances = [
+#         "I want to order a {OrderItems}"
     
     
-    ]
+#     ]
 
     
 
 
-    value_elicitation_prompt {
-      max_attempts = 2
+#     value_elicitation_prompt {
+#       max_attempts = 2
 
      
-      message {
-        content_type = "PlainText"
-        content = "What do you want to order"
+#       message {
+#         content_type = "PlainText"
+#         content = "What do you want to order"
         
-      }
-    }
+#       }
+#     }
 
    
-  }
+#   }
 
   
 
@@ -228,37 +228,37 @@ resource "aws_lex_intent" "order_food" {
 
 
 
-resource "aws_lex_slot_type" "menu" {
-  description = "Enumeration representing possible food items on the menu"
-  create_version = true
+# resource "aws_lex_slot_type" "menu" {
+#   description = "Enumeration representing possible food items on the menu"
+#   create_version = true
 
-  enumeration_value {
-    value = "burger"
-  }
+#   enumeration_value {
+#     value = "burger"
+#   }
 
-  enumeration_value {
-    value = "pizza"
-  }
+#   enumeration_value {
+#     value = "pizza"
+#   }
 
-  enumeration_value {
-    value = "pasta"
-  }
+#   enumeration_value {
+#     value = "pasta"
+#   }
 
-  enumeration_value {
-    value = "salad"
-  }
+#   enumeration_value {
+#     value = "salad"
+#   }
 
-  enumeration_value {
-    value = "sandwich"
-  }
+#   enumeration_value {
+#     value = "sandwich"
+#   }
 
-  enumeration_value {
-    value = "sushi"
-  }
+#   enumeration_value {
+#     value = "sushi"
+#   }
 
-  name                     = "FoodItems"
-  value_selection_strategy = "ORIGINAL_VALUE"
-}
+#   name                     = "FoodItems"
+#   value_selection_strategy = "ORIGINAL_VALUE"
+# }
 
 
 
