@@ -24,8 +24,8 @@ Resources:
           NluIntentConfidenceThreshold: 0.4
           VoiceSettings:
             VoiceId: Joanna
-            VoiceName: Joanna
-      AutoBuildBotLocales: true
+            # VoiceName: Joanna
+      AutoBuildBotLocales: false
       # BotFileS3Location:
       #   Bucket: !Ref BucketName
       #   Key: my-lex-bot.zip
