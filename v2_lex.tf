@@ -16,6 +16,9 @@ resource "aws_cloudformation_stack" "lex_bot_cfn" {
   name = "LexV2"
   template_body = file("lexbot_cfn_base.yml")
   capabilities = ["CAPABILITY_NAMED_IAM"]
+  parameters = {
+    BucketName = "terraform-state-mgmt-elliott"
+  }
   tags = {
     Environment = "Production"
   }

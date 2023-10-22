@@ -1,3 +1,10 @@
+Parameters:
+  BucketName:
+    Type: String
+    Default: ''
+  
+
+
 AWSTemplateFormatVersion: '2010-09-09'
 Resources:
   LexBot:
@@ -19,9 +26,9 @@ Resources:
             VoiceId: Joanna
             VoiceName: Joanna
       AutoBuildBotLocales: true
-      BotFileS3Location:
-        Bucket: my-bucket
-        Key: my-lex-bot.zip
+      # BotFileS3Location:
+      #   Bucket: !Ref BucketName
+      #   Key: my-lex-bot.zip
   LexBotRole:
     Type: 'AWS::IAM::Role'
     Properties:
