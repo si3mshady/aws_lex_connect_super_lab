@@ -192,7 +192,7 @@ resource "aws_lex_intent" "order_food" {
     description = "The items to be ordered"
     priority = 1
     slot_constraint = "Optional"
-    slot_type = aws_lex_slot_type.test.name
+    slot_type = aws_lex_slot_type.menu.name
 
     sample_utterances = [
         "I want to order a {OrderItems}"
