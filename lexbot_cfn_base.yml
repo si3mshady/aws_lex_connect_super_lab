@@ -15,7 +15,10 @@ Resources:
   
       DataPrivacy:
         ChildDirected: false
-      # BotLocales:
+      BotLocales:
+        WelcomeMessages:
+          - GroupNumber: 1
+            Message: "Welcome to MyLexBot! How can I assist you today?"
       #   - LocaleId: en_US
       #     NluConfidenceThreshold: 0.4
       #     VoiceSettings:
