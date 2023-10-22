@@ -55,8 +55,11 @@ resource "aws_cloudformation_stack" "lex_bot_cfn" {
 resource "null_resource" "create-bot-locale" {
   depends_on = [ aws_cloudformation_stack.lex_bot_cfn ]
   provisioner "local-exec" {
-    command = <<-EOT
-        aws lexv2-models create-bot-locale --bot-id ${var.bot_id} --bot-version ${var.bot_version} --locale-id ${var.bot_locale} --nlu-intent-confidence-threshold 0.4
+    command = <<EOT
+        aws lexv2-models create-bot-locale --bot-id ${var.bot_id} \
+        --bot-version ${var.bot_version} \
+        --locale-id ${var.bot_locale} \
+        --nlu-intent-confidence-threshold 0.4
     EOT
   }
 }
