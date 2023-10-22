@@ -135,30 +135,33 @@ resource "aws_lex_intent" "order_food" {
   description = "Intent to order food from a restaurant"
   create_version = false
 
-  sample_utterances = [
-  
-    "Can I get some food from your restaurant.",
-    # "I'd like to place an order for delivery.",
-    # "What's on the menu today.",
-    # "How can I place an order for takeout.",
-    # "I'm hungry. What can I order.",
-    # "Do you have any specials for today.",
-    # "I need to order some food for pickup.",
-    # "Tell me about your food options.",
-    # "I'm looking to get some food delivered."
+   sample_utterances = [
+    "Hello",
+    "Hi",
+    "How are you",
+    "What's up",
+    "Good morning",
+    "Good afternoon",
+    "Good evening"
   ]
-
   
+  fulfillment_activity {
+    type = "CodeHook"
+    code_hook {
+      uri = aws_lambda_function.food_items_lambda.invoke_arn
+      message_version = "1.0"
+    }
+  }
 
   confirmation_prompt {
     max_attempts = 2
 
-    # message {
-    #   group_number = 1
-    #   content_type = "PlainText"
-    #   content = "Absolutely, I'm thrilled to tell you about our delightful menu! Get ready for a mouthwatering experience with our incredible selection, including juicy burgers, heavenly pizzas, flavorful pastas, fresh and crisp salads, delectable sandwiches, and exquisite sushi."
+    message {
+      group_number = 1
+      content_type = "PlainText"
+      content = "Absolutely, I'm thrilled to tell you about our delightful menu! Get ready for a mouthwatering experience with our incredible selection, including juicy burgers, heavenly pizzas, flavorful pastas, fresh and crisp salads, delectable sandwiches, and exquisite sushi."
       
-    # }
+    }
 
     message {
     
@@ -180,10 +183,7 @@ resource "aws_lex_intent" "order_food" {
     }
   }
 
-  fulfillment_activity {
-    type = "ReturnIntent"
-    
-  }
+  
   
 
   slot {
@@ -192,7 +192,7 @@ resource "aws_lex_intent" "order_food" {
     description = "The items to be ordered"
     priority = 1
     slot_constraint = "Optional"
-    slot_type = aws_lex_slot_type.menu.name
+    slot_type = aws_lex_slot_type.test.name
 
     sample_utterances = [
         "I want to order a {OrderItems}"
@@ -258,3 +258,74 @@ resource "aws_lex_slot_type" "menu" {
   value_selection_strategy = "ORIGINAL_VALUE"
 }
 
+
+
+
+# data "archive_file" "lambda" {
+#   type        = "zip"
+#   source_file = "lambda.js"
+#   output_path = "lambda_function_payload.zip"
+# }
+
+
+resource "aws_iam_role" "lambda_role" {
+  name = "LambdaRole"
+  assume_role_policy = jsonencode({
+    Version = "2012-10-17"
+    Statement = [
+      {
+        Action = "sts:AssumeRole"
+        Effect = "Allow"
+        Principal = {
+          Service = "lambda.amazonaws.com"
+        }
+      }
+    ]
+  })
+}
+
+
+resource "aws_iam_role_policy_attachment" "lambda_policy_attachment" {
+  policy_arn = aws_iam_policy.lambda_policy.arn
+  role = aws_iam_role.lambda_role.name
+}
+
+resource "aws_iam_policy" "lambda_policy" {
+  name = "LambdaPolicy"
+  policy = jsonencode({
+    Version = "2012-10-17"
+    Statement = [
+      {
+        Action = [
+          "logs:CreateLogGroup",
+          "logs:CreateLogStream",
+          "logs:PutLogEvents"
+        ]
+        Effect = "Allow"
+        Resource = "arn:aws:logs:*:*:*"
+      }
+    ]
+  })
+}
+
+resource "aws_lambda_function" "test_lambda" {
+  # If the file is not in the current working directory you will need to include a
+  # path.module in the filename.
+  filename      = "lambda_function_payload.zip"
+  function_name = "lex_integration"
+  role          = aws_iam_role.iam_for_lambda.arn
+  handler       = "lambda_handler.lambda_handler"
+
+#   source_code_hash = data.archive_file.lambda.output_base64sha256
+
+  runtime = "python3.8"
+
+  
+}
+
+resource "aws_lambda_permission" "food_items_lambda_permission" {
+  statement_id  = "AllowExecutionFromLex"
+  action        = "lambda:InvokeFunction"
+  function_name = aws_lambda_function.test_lambda.function_name
+  principal     = "lex.amazonaws.com"
+}
