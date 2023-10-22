@@ -2,6 +2,15 @@ Parameters:
   BucketName:
     Type: String
     Default: ''
+
+  BotBucketName:
+    Type: String
+    Default: ''
+
+  BotExport:
+    Type: String
+    Default: ''
+
   
 AWSTemplateFormatVersion: '2010-09-09'
 Resources:
@@ -9,10 +18,15 @@ Resources:
     Type: 'AWS::Lex::Bot'
     Properties:
       Name: MyLexBot
-      Description: Elliott's Amazon Lex V2 bot
+      Description: Elliott's Amazon Lex V2 Bot Lab
       RoleArn: !GetAtt LexBotRole.Arn
       IdleSessionTTLInSeconds: 300
-  
+      BotLocales: 
+        - BotLocale
+
+      BotFileS3Location: 
+        S3Bucket: !Ref BotBucketName
+        S3ObjectKey: !Ref BotExpor
       DataPrivacy:
         ChildDirected: false
       # AutoBuildBotLocales: true

@@ -4,25 +4,20 @@ provider "aws" {
 
 }
 
-variable "bot_id" {
+
+variable "bot_key" {
   type = string
-  default = "VD4IZSUGEQ"
+  default = "v2BaseBot.zip"
 }
 
-variable "bot_description" {
-  type = string
-  default = "My Amazon Lex V2 bot"
+
+variable "bot_bucket_name" {
+    type = string
+    default = "aws-connect-lex-labs"
 }
 
-variable "bot_locale" {
-  type = string
-  default = "en_US"
-}
 
-variable "bot_version" {
-  type = string
-  default = "DRAFT"
-}
+
 
 variable "bucket_name" {
   type = string
@@ -39,11 +34,13 @@ terraform {
 }
 
 resource "aws_cloudformation_stack" "lex_bot_cfn" {
-  name = "LexV2"
+  name = "LEXBOT2"
   template_body = file("lexbot_cfn_base.yml")
   capabilities = ["CAPABILITY_NAMED_IAM"]
   parameters = {
     BucketName = var.bucket_name
+    BotBucketName = var.bot_bucket_name
+    BotExport = var.bot_key
    
   }
   tags = {
