@@ -21,7 +21,7 @@ variable "bot_locale" {
 
 variable "bot_version" {
   type = string
-  default = "$LATEST"
+  default = "DRAFT"
 }
 
 variable "bucket_name" {
