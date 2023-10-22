@@ -21,8 +21,7 @@ Resources:
       Description: Elliott's Amazon Lex V2 Bot Lab
       RoleArn: !GetAtt LexBotRole.Arn
       IdleSessionTTLInSeconds: 300
-      BotLocales: 
-        - BotLocale
+      
       BotFileS3Location: 
         S3Bucket: !Ref BotBucketName
         S3ObjectKey: !Ref BotExport
