@@ -21,15 +21,13 @@ Resources:
       Description: Elliott's Amazon Lex V2 Bot Lab
       RoleArn: !GetAtt LexBotRole.Arn
       IdleSessionTTLInSeconds: 300
-      # BotLocales: 
-      #   - BotLocale
-
+      BotLocales: 
+        - BotLocale
       BotFileS3Location: 
         S3Bucket: !Ref BotBucketName
         S3ObjectKey: !Ref BotExport
       DataPrivacy:
         ChildDirected: false
-      # AutoBuildBotLocales: true
   LexBotRole:
     Type: 'AWS::IAM::Role'
     Properties:
@@ -69,7 +67,98 @@ Resources:
                   - 'lexv2:DescribeSlot'
                   - 'lexv2:UpdateSlot'
                 Resource: '*'
-
-
-
-#start by deploying only required attributes
+  LexBotAlarm1:
+    Type: 'AWS::CloudWatch::Alarm'
+    Properties:
+      AlarmName: MissedUtteranceCountAlarm
+      AlarmDescription: 'Alarm for MissedUtteranceCount metric'
+      Namespace: 'AWS/Lex'
+      MetricName: 'MissedUtteranceCount'
+      Dimensions:
+        - Name: 'BotName'
+          Value: !Ref LexBotV2
+        - Name: 'BotAlias'
+          Value: 'LATEST'
+      Statistic: 'Sum'
+      Period: 300
+      EvaluationPeriods: 1
+      Threshold: 1
+      ComparisonOperator: 'GreaterThanThreshold'
+      AlarmActions:
+        - !Ref SnsTopicArn
+  LexBotAlarm2:
+    Type: 'AWS::CloudWatch::Alarm'
+    Properties:
+      AlarmName: IntentCountAlarm
+      AlarmDescription: 'Alarm for IntentCount metric'
+      Namespace: 'AWS/Lex'
+      MetricName: 'IntentCount'
+      Dimensions:
+        - Name: 'BotName'
+          Value: !Ref LexBotV2
+        - Name: 'BotAlias'
+          Value: 'LATEST'
+      Statistic: 'Sum'
+      Period: 300
+      EvaluationPeriods: 1
+      Threshold: 1
+      ComparisonOperator: 'GreaterThanThreshold'
+      AlarmActions:
+        - !Ref SnsTopicArn
+  LexBotAlarm3:
+    Type: 'AWS::CloudWatch::Alarm'
+    Properties:
+      AlarmName: FulfilledRequestCountAlarm
+      AlarmDescription: 'Alarm for FulfilledRequestCount metric'
+      Namespace: 'AWS/Lex'
+      MetricName: 'FulfilledRequestCount'
+      Dimensions:
+        - Name: 'BotName'
+          Value: !Ref LexBotV2
+        - Name: 'BotAlias'
+          Value: 'LATEST'
+      Statistic: 'Sum'
+      Period: 300
+      EvaluationPeriods: 1
+      Threshold: 1
+      ComparisonOperator: 'GreaterThanThreshold'
+      AlarmActions:
+        - !Ref SnsTopicArn
+  LexBotAlarm4:
+    Type: 'AWS::CloudWatch::Alarm'
+    Properties:
+      AlarmName: PositiveFeedbackCountAlarm
+      AlarmDescription: 'Alarm for PositiveFeedbackCount metric'
+      Namespace: 'AWS/Lex'
+      MetricName: 'PositiveFeedbackCount'
+      Dimensions:
+        - Name: 'BotName'
+          Value: !Ref LexBotV2
+        - Name: 'BotAlias'
+          Value: 'LATEST'
+      Statistic: 'Sum'
+      Period: 300
+      EvaluationPeriods: 1
+      Threshold: 1
+      ComparisonOperator: 'GreaterThanThreshold'
+      AlarmActions:
+        - !Ref SnsTopicArn
+  LexBotAlarm5:
+    Type: 'AWS::CloudWatch::Alarm'
+    Properties:
+      AlarmName: NegativeFeedbackCountAlarm
+      AlarmDescription: 'Alarm for NegativeFeedbackCount metric'
+      Namespace: 'AWS/Lex'
+      MetricName: 'NegativeFeedbackCount'
+      Dimensions:
+        - Name: 'BotName'
+          Value: !Ref LexBotV2
+        - Name: 'BotAlias'
+          Value: 'LATEST'
+      Statistic: 'Sum'
+      Period: 300
+      EvaluationPeriods: 1
+      Threshold: 1
+      ComparisonOperator: 'GreaterThanThreshold'
+      AlarmActions:
+        - !Ref SnsTopicArn
