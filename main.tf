@@ -148,7 +148,7 @@ resource "aws_lex_intent" "order_food" {
   fulfillment_activity {
     type = "CodeHook"
     code_hook {
-      uri = aws_lambda_function.food_items_lambda.invoke_arn
+      uri = aws_lambda_function.test_lambda.invoke_arn
       message_version = "1.0"
     }
   }
