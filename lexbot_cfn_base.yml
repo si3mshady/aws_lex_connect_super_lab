@@ -12,16 +12,14 @@ Resources:
       Description: Elliott's Amazon Lex V2 bot
       RoleArn: !GetAtt LexBotRole.Arn
       IdleSessionTTLInSeconds: 300
-      BotTags:
-        - Key: Environment
-          Value: Dev
+  
       DataPrivacy:
         ChildDirected: false
-      BotLocales:
-        - LocaleId: en_US
-          NluConfidenceThreshold: 0.4
-          VoiceSettings:
-            VoiceId: Joanna
+      # BotLocales:
+      #   - LocaleId: en_US
+      #     NluConfidenceThreshold: 0.4
+      #     VoiceSettings:
+      #       VoiceId: Joanna
            
       AutoBuildBotLocales: false
   LexBotRole:

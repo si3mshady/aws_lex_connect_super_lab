@@ -2,18 +2,15 @@
     "Type": "AWS::Lex::Bot",
     "Properties": {
       "AutoBuildBotLocales": true,
-      "BotFileS3Location": {
-        "Bucket": "<bucketname>",
-        "Key": "<filename>"
-      },
+      
       "BotLocales": [
         {
           "LocaleId": "en_US",
           "VoiceSettings": {
-            "VoiceId": "Joanna",
-            "VoiceName": "Joanna"
+            "VoiceId": "Joanna"
+            
           },
-          "NluIntentConfidenceThreshold": 0.4
+          "NluConfidenceThreshold": 0.4
         }
       ],
       "BotTags": [
@@ -28,7 +25,7 @@
       "Description": "My Amazon Lex V2 bot",
       "IdleSessionTTLInSeconds": 300,
       "Name": "MyLexBot",
-      "RoleArn": "<value>",
+      "RoleArn": "arn:aws:iam::335055665325:role/LexBotRoleV2",
       "TestBotAliasSettings": {},
       "TestBotAliasTags": []
     }
